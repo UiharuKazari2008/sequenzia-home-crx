@@ -1,0 +1,14 @@
+{
+  "name": "Sequenzia Home",
+  "description": "Newtab Replacement for the Sequenzia Image Board",
+  "version": "0.0.1",
+  "permissions": ["storage", "cookies", "*://seq.moe/*", "*://*.seq.moe/*"],
+  "background": {
+    "persistent": true,
+    "scripts": ["background.js"]
+  },
+  "manifest_version": 2,
+  "chrome_url_overrides": {
+    "newtab": "homePage.html"
+  }
+}
