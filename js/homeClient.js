@@ -115,12 +115,12 @@ $(document).ready(function () {
             setupPage();
             setInterval(setupPage, 180000);
         } else {
-            document.getElementById('data1').innerText = "Login Required"
-            document.getElementById('data3').innerText = "Click Here";
+            document.getElementById('data1').innerText = "Login Required, Click Here"
         }
     })
 
     document.getElementById("btnSearch").addEventListener("click", () => { $("#srchfrm").submit(); });
+    document.getElementById("nextImage").addEventListener("click", setupPage);
     document.getElementById("btnSearchGallery").addEventListener("click", () => {
         window.location.href = `https://seq.moe/gallery?channel=random&pageinator=true&search=${document.getElementById('q').value}`; });
     document.getElementById("btnSearchFiles").addEventListener("click", () => {

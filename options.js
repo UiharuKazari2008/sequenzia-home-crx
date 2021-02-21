@@ -24,9 +24,11 @@ function save_options() {
     }, function() {
         // Update status to let user know options were saved.
         const status = document.getElementById('status');
-        status.textContent = 'Options saved. Please reload the extention by clicking the extention icon';
+        status.textContent = 'Options saved. Now Reloading...';
+        chrome.extension.getBackgroundPage().getImages();
         setTimeout(function() {
             status.textContent = '';
+            restore_options();
         }, 2000);
     })
 }
@@ -44,6 +46,18 @@ function restore_options() {
             document.getElementById('showNSFW').checked = items.settings.showNSFW;
     });
 }
+
+function display_usage() {
+    chrome.storage.local.getBytesInUse(null , (txt) => {
+        document.getElementById('usage').innerText = (txt / (1024 * 1024)).toFixed(2)
+    });
+    chrome.storage.local.get(null , (data) => {
+        document.getElementById('count').innerText = Object.keys(data).filter((e) => {return e.includes('file-')}).length
+    });
+}
+
+setInterval(display_usage, 5000);
+display_usage();
 
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click', save_options);

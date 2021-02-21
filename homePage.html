@@ -27,7 +27,7 @@
         </div>
 
         <div class="mid-center-block">
-            <div class="animated--grow-in">
+            <div class="animated--grow-in shadow-blk-wide">
                 <div class="dimmed d-flex">
                     <div class="flex-grow-1">
                         <a href="https://seq.moe/">
@@ -56,7 +56,7 @@
                 </div>
                 <form spellcheck="false" id="srchfrm" role="search" action="https://www.bing.com/search?scope=web" target="_self" method="get" class="shadow-blk search-box">
                     <div class="input-group">
-                        <input class="form-control" name="q" placeholder="Search the web" title="Enter your search term" autocomplete="off" maxlength="250" aria-label="Enter your search term" id="q" accesskey="S" type="search" style="font-size: larger; padding: 1.25em;">
+                        <input autofocus class="form-control" name="q" placeholder="Search the web" title="Enter your search term" autocomplete="off" maxlength="250" aria-label="Enter your search term" id="q" accesskey="S" type="search" style="font-size: larger; padding: 1.25em;">
                         <input name="form" type="hidden" value="ANNTH1">
                         <div class="input-group-append">
                             <a class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearch">
@@ -75,7 +75,7 @@
             <div class="animated--grow-in">
                 <div class="dimmed d-flex pt-2">
                     <div class="flex-grow-1" style="font-size: 1.3rem; font-weight: 100;" id="dataInfo">
-                        <a id="imageLink" style="color: unset; text-decoration: none;"  href="https://seq.moe/">
+                        <a id="imageLink" href="https://seq.moe/">
                             <div class="d-inline-block" style="padding: 0 0.25rem 0 0">
                                 <i class="fas fa-star shadow-text d-none" id="dataFav" style="font-size: 16px; vertical-align: middle; padding-bottom: 8px;"></i>
                             </div>
@@ -88,8 +88,11 @@
                     </div>
                     <div class="d-flex flex-column justify-content-end bottom-icon">
                         <div style="font-size: 1.3rem; font-weight: 100;">
+                            <a id="nextImage" style="text-decoration: none;" class="d-inline hover-color pr-2" href="#">
+                                <i class="i fas fa-sync fa-sm shadow-blk"></i>
+                            </a>
                             <a target="_blank" rel="noopener noreferrer" id="imageDownload" style="text-decoration: none;" class="d-inline hover-color" href="#">
-                                <i class="i fas fa-download fa-sm"></i>
+                                <i class="i fas fa-download fa-sm shadow-blk"></i>
                             </a>
                         </div>
                     </div>
