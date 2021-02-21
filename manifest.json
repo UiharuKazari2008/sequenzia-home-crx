@@ -1,8 +1,12 @@
 {
   "name": "Sequenzia Home",
-  "description": "Newtab Replacement for the Sequenzia Image Board",
-  "version": "0.0.1",
-  "permissions": ["storage", "cookies", "*://seq.moe/*", "*://*.seq.moe/*"],
+  "description": "Homepage for the Sequenzia Image Board",
+  "version": "0.0.2",
+  "permissions": ["storage", "unlimitedStorage", "cookies", "*://seq.moe/*", "*://*.seq.moe/*"],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
   "background": {
     "persistent": true,
     "scripts": ["background.js"]
@@ -10,5 +14,10 @@
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "homePage.html"
+  },
+  "icons": {
+     "128": "img/chrome-128-128.png",
+     "16": "img/chrome-16-16.png",
+     "48": "img/chrome-48-48.png"
   }
 }

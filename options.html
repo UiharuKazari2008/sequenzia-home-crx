@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Seq Homepage Options</title></head>
+<body>
+    Channel List: <input id="channelList" type="text" value="random"><br>
+
+    Minimum Resolution: <select id="resolutionMin">
+        <option value="NA">All</option>
+        <option value="720">720px+</option>
+        <option value="1080">1080px+</option>
+        <option value="2100">2100px+</option>
+    </select><br>
+    Aspect Ratio: <select id="aspectMode">
+        <option value="NA">All</option>
+        <option value="0.01-1">Landscape-Only</option>
+        <option value="1-2.1">Portrait-Only</option>
+    </select><br>
+    Aspect Correction: <input type="checkbox" id="aspectCorrect" value="portraitMode" checked><br>
+
+    Show NSFW Content (Requires Approval): <input type="checkbox" id="showNSFW" value="nsfwShow"><br>
+    Number of Images to Cache: <input id="numberRequest" type="text" value="10"><br>
+    Refresh Time: <input id="refreshTimer" type="text" value="35"><br>
+
+    <div id="status"></div>
+    <button id="save">Save</button>
+
+    <script src="options.js"></script>
+</body>
+</html>

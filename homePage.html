@@ -2,11 +2,100 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
-        <title>Title</title>
-        <script type='text/javascript' src="/js/jquery-3.5.1.min.js"></script>
+        <title>New Tab</title>
+        <link rel='stylesheet' href='/css/sb-admin-2.css'><link/>
+        <link rel='stylesheet' href="/css/custom.css"><link/>
+        <link rel='stylesheet' href="/css/homeClient.css"><link/>
+        <link rel='stylesheet' href='/vendor/fontawesome-free/css/all.min.css'><link/>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Yantramanav:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i'><link/>
+        <script type='text/javascript' src="/vendor/jquery-3.5.1.min.js"></script>
         <script type='text/javascript' src="/js/homeClient.js"></script>
     </head>
 <body>
+    <div class="background-image overlay" id="overlayBg"></div>
+    <div class="background-image" id="bg1" style="opacity: 1; z-index: -101!important; background-image: url('/img/default.png');"></div>
+    <div class="background-image" id="bg2" style="opacity: 0; z-index: -103!important; background-image: url('#');"></div>
+    <img class="portait-overlay center-block" id="bg1port" style="z-index: -100!important; opacity: 0;"/>
+    <img class="portait-overlay center-block" id="bg2port" style="z-index: -102!important; opacity: 0;"/>
+        
+    <div class="container p-4" id="content-wrapper">
+        <div class="fixed-top m-5">
+            <div class="d-flex justify-content-end" id="userInfo" style="opacity: 0.5;">
+                <span id="userName" class="align-self-center" style="font-size: 1.6em; color: white; font-weight: 300; padding: 0 0.5em 0 0; -webkit-text-stroke: 1px #00000069; text-shadow: 0px 0px 10px #000000a6;"></span>
+                <img id="userImage" class="img-profile rounded-circle" style="width: 2.5em; box-shadow: 0 0 8px black; -webkit-text-stroke: 1px #00000069; text-shadow: 0px 0px 10px #000000a6;" />
+            </div>
+        </div>
 
+        <div class="mid-center-block">
+            <div class="animated--grow-in">
+                <div class="dimmed d-flex">
+                    <div class="flex-grow-1">
+                        <a href="https://seq.moe/">
+                            <img class="shadow-blk" src="img/logo.png" style="height: 3.5em; padding: 0 0 0.5em 0.5em;" />
+                        </a>
+                    </div>
+                    <div class="d-flex flex-column justify-content-end top-icon">
+                        <div>
+                            <a href="https://seq.moe/gallery?channel=random&nsfw=false&pageinator=true&numdays=60" class="pr-2 d-inline hover-color">
+                                <i class="shadow-blk fas fa-clock"></i>
+                            </a>
+                            <a href="https://seq.moe/gallery?channel=random&sort=id&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
+                                <i class="shadow-blk fas fa-stream"></i>
+                            </a>
+                            <a href="https://seq.moe/files?channel=random&sort=id&filesonly=true&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
+                                <i class="shadow-blk fas fa-folder"></i>
+                            </a>
+                            <a href="https://seq.moe/gallery?channel=random&nsfw=false&sort=id&pins=true" class="pr-2 d-inline hover-color">
+                                <i class="shadow-blk fas fa-star"></i>
+                            </a>
+                            <a href="https://seq.moe/gallery?channel=random&sort=random&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
+                                <i class="shadow-blk fas fa-dice"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <form spellcheck="false" id="srchfrm" role="search" action="https://www.bing.com/search?scope=web" target="_self" method="get" class="shadow-blk search-box">
+                    <div class="input-group">
+                        <input class="form-control" name="q" placeholder="Search the web" title="Enter your search term" autocomplete="off" maxlength="250" aria-label="Enter your search term" id="q" accesskey="S" type="search" style="font-size: larger; padding: 1.25em;">
+                        <input name="form" type="hidden" value="ANNTH1">
+                        <div class="input-group-append">
+                            <a class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearch">
+                                <i class="i fas fa-search fa-sm align-middle nav-item" style='font-size: 1.3em;'></i>
+                            </a>
+                            <a class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearchGallery">
+                                <i class="i fas fa-image fa-sm align-middle nav-item" style='font-size: 1.3em;'></i>
+                            </a>
+                            <a class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearchFiles">
+                                <i class="i fas fa-folder fa-sm align-middle nav-item" style='font-size: 1.3em;'></i>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="animated--grow-in">
+                <div class="dimmed d-flex pt-2">
+                    <div class="flex-grow-1" style="font-size: 1.3rem; font-weight: 100;" id="dataInfo">
+                        <a id="imageLink" style="color: unset; text-decoration: none;"  href="https://seq.moe/">
+                            <div class="d-inline-block" style="padding: 0 0.25rem 0 0">
+                                <i class="fas fa-star shadow-text d-none" id="dataFav" style="font-size: 16px; vertical-align: middle; padding-bottom: 8px;"></i>
+                            </div>
+                            <span class="text-capitalize shadow-text" id="data1"></span>
+                            <div class="d-none" style="padding: 0 0.5rem" id="seperator">
+                                <i class="fas fa-circle shadow-text" style='font-size: 8px; vertical-align: middle;'></i>
+                            </div>
+                            <span class="shadow-text" id="data3"></span>
+                        </a>
+                    </div>
+                    <div class="d-flex flex-column justify-content-end bottom-icon">
+                        <div style="font-size: 1.3rem; font-weight: 100;">
+                            <a target="_blank" rel="noopener noreferrer" id="imageDownload" style="text-decoration: none;" class="d-inline hover-color" href="#">
+                                <i class="i fas fa-download fa-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
