@@ -23,25 +23,20 @@ docutrol@acr.moe - 484-362-9855 - docs.acr.moe/docutrol
 const baseURL = 'https://seq.moe'
 
 function loadExtension() {
-    chrome.storage.sync.get(['settings'], function(items) {
-        let refreshTime = 30;
-        if (items.settings !== undefined) {
-            console.log('Settings are available!');
-            refreshTime = items.settings.refreshTimer;
-        }
-        setInterval(getImages, refreshTime * 60000);
-        chrome.storage.local.get(null, (data) => {
-            if (data !== undefined && Object.keys(data).filter((e) => { return e.includes('file-') }).length > 0) {
-                console.log('Images Found, We refresh later');
-                if (refreshTime > 10) {
-                    setTimeout(getImages, 5 * 60000);
-                }
+    chrome.storage.local.get(null, (data) => {
+        if (data !== undefined) {
+            const numFiles = Object.keys(data).filter((e) => { return e.includes('file-') }).length
+            if (numFiles > 0) {
+                console.log(`${numFiles} Images Found`);
             } else {
-                console.log('No Images Found, Loading Now');
+                console.log('No Images Found, Attempting to download data...');
                 getImages();
             }
-        })
-    });
+        } else {
+            console.log('No Local Storage Found, Attempting to download data...');
+            getImages();
+        }
+    })
 }
 
 function getImages() {

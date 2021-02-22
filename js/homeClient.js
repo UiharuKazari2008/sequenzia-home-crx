@@ -81,7 +81,6 @@ async function setupPage() {
         }
         chrome.storage.local.get(null, (data) => {
             if (data !== undefined) {
-                console.log('New Image Time!')
                 const keys = Object.keys(data);
                 if (keys.indexOf('userInfo') !== -1) {
                     document.getElementById('userName').innerText = data['userInfo'].user_username;
@@ -95,15 +94,22 @@ async function setupPage() {
                         last++;
                     } else {
                         last = 0;
+
+                        console.log('Getting more images...');
+                        chrome.extension.getBackgroundPage().getImages();
                     }
                     chrome.storage.local.set({'activity-last': last});
+
+                    console.log(`Displaying Image #${last}`)
                     changeImage(data[files[last]]);
                 } else {
                     chrome.storage.local.set({'activity-last': 0});
+
                     changeImage(data[files[0]]);
                 }
             } else {
-                console.log('Cannot get a new image, no data')
+                console.log('Cannot get a new image, Refreshing...')
+                chrome.extension.getBackgroundPage().getImages();
             }
         })
     })
@@ -113,7 +119,7 @@ $(document).ready(function () {
     chrome.storage.local.get(null, (data) => {
         if (data !== undefined && Object.keys(data).filter((e) => {return e.includes('file-')}).length > 0) {
             setupPage();
-            setInterval(setupPage, 180000);
+            setInterval(setupPage, 300000);
         } else {
             document.getElementById('data1').innerText = "Login Required, Click Here"
         }
