@@ -61,6 +61,9 @@ function getImages() {
                     if (items.settings.aspectMode !== undefined && items.settings.aspectMode !== 'NA') {
                         options.push(`ratio=${items.settings.aspectMode}`)
                     }
+                    if (items.settings.numDays !== undefined && items.settings.numDays !== 'NA') {
+                        options.push(`numdays=${items.settings.numDays}`)
+                    }
                     if (items.settings.showNSFW !== undefined && items.settings.showNSFW === true) {
                         options.push(`nsfw=true`)
                     } else {

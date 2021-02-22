@@ -3,6 +3,7 @@ function save_options() {
     let resolutionMin = document.getElementById('resolutionMin').value;
     let aspectMode = document.getElementById('aspectMode').value;
     let numberRequest = parseInt(document.getElementById('numberRequest').value);
+    let numDays = parseInt(document.getElementById('numDays').value);
     if (isNaN(numberRequest))
         numberRequest = 15;
     let aspectCorrect = document.getElementById('aspectCorrect').checked;
@@ -15,7 +16,8 @@ function save_options() {
             aspectMode: aspectMode,
             aspectCorrect: aspectCorrect,
             showNSFW: showNSFW,
-            numberRequest: numberRequest
+            numberRequest: numberRequest,
+            numDays: numDays
         }
     }, function() {
         // Update status to let user know options were saved.
@@ -37,6 +39,7 @@ function restore_options() {
             document.getElementById('resolutionMin').value = items.settings.resolutionMin;
             document.getElementById('aspectMode').value = items.settings.aspectMode;
             document.getElementById('numberRequest').value = items.settings.numberRequest;
+            document.getElementById('numDays').value = items.settings.numDays;
             document.getElementById('aspectCorrect').checked = items.settings.aspectCorrect;
             document.getElementById('showNSFW').checked = items.settings.showNSFW;
     });
