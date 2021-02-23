@@ -14,6 +14,7 @@ function save_options() {
     const aspectCorrect = document.getElementById('aspectCorrect').checked;
     const showNSFW = document.getElementById('showNSFW').checked;
     const ambientModeOnly = document.getElementById('ambientModeOnly').checked;
+    const onlyPins = document.getElementById('onlyPins').checked;
 
     const syncChannelList = document.getElementById('syncChannelList').checked;
     const syncResolutionMin = document.getElementById('syncResolutionMin').checked;
@@ -23,6 +24,7 @@ function save_options() {
     const syncCycleTimer = document.getElementById('syncCycleTimer').checked;
     const syncNumberRequest = document.getElementById('syncNumberRequest').checked;
     const syncShowNSFW = document.getElementById('syncShowNSFW').checked;
+    const syncOnlyPins = document.getElementById('syncOnlyPins').checked;
 
     chrome.storage.sync.get(['settings'], function(oldSettings) {
     chrome.storage.sync.set({
@@ -34,7 +36,8 @@ function save_options() {
             showNSFW: ((syncShowNSFW) ? showNSFW : oldSettings.settings.showNSFW),
             numberRequest: ((syncNumberRequest) ? numberRequest : oldSettings.settings.numberRequest),
             cycleTimer: ((syncCycleTimer) ? cycleTimer : oldSettings.settings.cycleTimer),
-            numDays: (( syncNumDays) ? numDays : oldSettings.settings.numDays)
+            numDays: (( syncNumDays) ? numDays : oldSettings.settings.numDays),
+            onlyPins: (( syncNumDays) ? onlyPins : oldSettings.settings.onlyPins),
         }
     }, function() {
     chrome.storage.local.set({
@@ -47,7 +50,8 @@ function save_options() {
             numberRequest: numberRequest,
             cycleTimer: cycleTimer,
             numDays: numDays,
-            ambientModeOnly: ambientModeOnly
+            ambientModeOnly: ambientModeOnly,
+            onlyPins: onlyPins
         }
     }, function() {
     chrome.storage.sync.set({
@@ -59,7 +63,8 @@ function save_options() {
             showNSFW: syncShowNSFW,
             numberRequest: syncNumberRequest,
             cycleTimer: syncCycleTimer,
-            numDays: syncNumDays
+            numDays: syncNumDays,
+            onlyPins: syncOnlyPins
         }
     }, function() {
         // Update status to let user know options were saved.
@@ -86,6 +91,7 @@ function restore_options() {
             document.getElementById('syncNumDays').checked = sync.syncSettings.numDays;
             document.getElementById('syncCycleTimer').checked = sync.syncSettings.cycleTimer;
             document.getElementById('syncShowNSFW').checked = sync.syncSettings.showNSFW;
+            document.getElementById('syncOnlyPins').checked = sync.syncSettings.onlyPins;
     chrome.storage.local.get(['settings'], function(local) {
     chrome.storage.sync.get(['settings'], function(cloud) {
         if (sync.syncSettings.channelList){
@@ -144,6 +150,13 @@ function restore_options() {
             if (local.settings !== undefined)
                 document.getElementById('showNSFW').checked = local.settings.showNSFW;
         }
+        if (sync.syncSettings.onlyPins) {
+            if (cloud.settings !== undefined)
+                document.getElementById('onlyPins').checked = cloud.settings.onlyPins;
+        } else {
+            if (local.settings !== undefined)
+                document.getElementById('onlyPins').checked = local.settings.onlyPins;
+        }
         if (local.settings !== undefined)
             document.getElementById('ambientModeOnly').checked = local.settings.ambientModeOnly;
     });
@@ -164,6 +177,7 @@ function upload_options() {
         cycleTimer = 5;
     const aspectCorrect = document.getElementById('aspectCorrect').checked;
     const showNSFW = document.getElementById('showNSFW').checked;
+    const onlyPins = document.getElementById('onlyPins').checked;
 
     chrome.storage.sync.set({
         settings: {
@@ -174,7 +188,8 @@ function upload_options() {
             showNSFW: showNSFW,
             numberRequest: numberRequest,
             cycleTimer: cycleTimer,
-            numDays: numDays
+            numDays: numDays,
+            onlyPins: onlyPins
         }
     }, function () {
         status.textContent = 'Setting Pushed to the cloud';
@@ -194,6 +209,7 @@ function download_options() {
         document.getElementById('numDays').value = cloud.settings.numDays;
         document.getElementById('cycleTimer').value = cloud.settings.cycleTimer;
         document.getElementById('showNSFW').checked = cloud.settings.showNSFW;
+        document.getElementById('onlyPins').checked = cloud.settings.onlyPins;
         status.textContent = 'Setting Pulled from the cloud';
         setTimeout(function () {
             status.textContent = '';

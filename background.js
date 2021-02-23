@@ -64,6 +64,9 @@ function getImages() {
                     if (sync.settings.numDays !== undefined && sync.settings.numDays !== 'NA') {
                         options.push(`numdays=${sync.settings.numDays}`)
                     }
+                    if (sync.settings.onlyPins !== undefined && sync.settings.onlyPins === true) {
+                        options.push(`pins=true`)
+                    }
                     if (sync.settings.showNSFW !== undefined && sync.settings.showNSFW === true) {
                         options.push(`nsfw=true`)
                     } else {

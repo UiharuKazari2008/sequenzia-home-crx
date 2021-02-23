@@ -179,20 +179,17 @@ function setupPage() {
                             chrome.extension.getBackgroundPage().getImages();
                         }
                         chrome.storage.local.set({'activity-last': last});
-                        console.log(`Displaying Image #${last}`)
+                        console.log(`Displaying Image #${data['activity-last']}`)
                         changeImage(data[files[last]]);
                     } else {
                         chrome.storage.local.set({'activity-last': 0});
                         changeImage(data[files[0]]);
                     }
                 } else {
-                    console.log('Cannot get a new image, Refreshing...')
-                    chrome.extension.getBackgroundPage().getImages();
+                    console.log('Cannot get a new image, Canceled!')
                 }
             })
         })
-    } else {
-        console.log('Page is not visible')
     }
 }
 
