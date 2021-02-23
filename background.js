@@ -124,7 +124,7 @@ function parseResponse(refreshResponse, cookieString) {
         })
         let parsedItems = 0;
         refreshResponse.randomImage.forEach((image, i, a) => {
-            fetch(`${baseURL}${image[1]}`, {
+            fetch(`${baseURL}${image[1]}?format=webp`, {
                 method: 'GET',
                 mode: "no-cors",
                 cache: "no-cache",
