@@ -31,25 +31,25 @@
             <div class="animated--grow-in shadow-blk-wide">
                 <div class="dimmed d-flex">
                     <div class="flex-grow-1">
-                        <a href="https://seq.moe/">
+                        <a title="Got to Sequenzia" href="https://seq.moe/">
                             <img class="shadow-blk" src="img/logo.png" style="height: 3.5em; padding: 0 0 0.5em 0.5em;" />
                         </a>
                     </div>
                     <div class="d-flex flex-column justify-content-end top-icon">
                         <div>
-                            <a href="https://seq.moe/gallery?channel=random&nsfw=false&pageinator=true&numdays=60" class="pr-2 d-inline hover-color">
+                            <a title="Recent Images" href="https://seq.moe/gallery?channel=random&nsfw=false&pageinator=true&numdays=60" class="pr-2 d-inline hover-color">
                                 <i class="shadow-blk fas fa-clock"></i>
                             </a>
-                            <a href="https://seq.moe/gallery?channel=random&sort=id&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
+                            <a title="Photo Stream"  href="https://seq.moe/gallery?channel=random&sort=id&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
                                 <i class="shadow-blk fas fa-stream"></i>
                             </a>
-                            <a href="https://seq.moe/files?channel=random&sort=id&filesonly=true&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
+                            <a title="File Stream" href="https://seq.moe/files?channel=random&sort=id&filesonly=true&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
                                 <i class="shadow-blk fas fa-folder"></i>
                             </a>
-                            <a href="https://seq.moe/gallery?channel=random&nsfw=false&sort=id&pins=true" class="pr-2 d-inline hover-color">
+                            <a title="Pinned Images" href="https://seq.moe/gallery?channel=random&nsfw=false&sort=id&pins=true" class="pr-2 d-inline hover-color">
                                 <i class="shadow-blk fas fa-star"></i>
                             </a>
-                            <a href="https://seq.moe/gallery?channel=random&sort=random&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
+                            <a title="Random Images"  href="https://seq.moe/gallery?channel=random&sort=random&nsfw=false&pageinator=true" class="pr-2 d-inline hover-color">
                                 <i class="shadow-blk fas fa-dice"></i>
                             </a>
                         </div>
@@ -60,13 +60,13 @@
                         <input autofocus class="form-control" name="q" placeholder="Search the web" title="Enter your search term" autocomplete="off" maxlength="250" aria-label="Enter your search term" id="q" accesskey="S" type="search" style="font-size: larger; padding: 1.25em;">
                         <input name="form" type="hidden" value="ANNTH1">
                         <div class="input-group-append">
-                            <a class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearch">
+                            <a title="Search Bing"  class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearch">
                                 <i class="i fas fa-search fa-sm align-middle nav-item" style='font-size: 1.3em;'></i>
                             </a>
-                            <a class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearchGallery">
+                            <a title="Search Images"  class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearchGallery">
                                 <i class="i fas fa-image fa-sm align-middle nav-item" style='font-size: 1.3em;'></i>
                             </a>
-                            <a class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearchFiles">
+                            <a title="Search Files"  class="btn input-group-text bg-home-search btn-search" href="#" id="btnSearchFiles">
                                 <i class="i fas fa-folder fa-sm align-middle nav-item" style='font-size: 1.3em;'></i>
                             </a>
                         </div>
@@ -76,7 +76,7 @@
             <div class="animated--grow-in">
                 <div class="dimmed d-flex pt-2">
                     <div class="flex-grow-1" style="font-size: 1.3rem; font-weight: 100;">
-                        <a id="imageLink" href="https://seq.moe/">
+                        <a title="View the background photo in Sequenzia"  id="imageLink" href="https://seq.moe/">
                             <div class="d-inline-block" style="padding: 0 0.25rem 0 0">
                                 <i class="fas fa-star shadow-text d-none" id="dataFav" style="font-size: 16px; vertical-align: middle; padding-bottom: 8px;"></i>
                             </div>
@@ -89,13 +89,13 @@
                     </div>
                     <div class="d-flex flex-column justify-content-end bottom-icon">
                         <div style="font-size: 1.3rem; font-weight: 100;">
-                            <a id="ambientModeToggle" style="text-decoration: none;" class="d-inline hover-color pr-2" href="#">
+                            <a title="Enter Ambient Mode" id="ambientModeToggle" style="text-decoration: none;" class="d-inline hover-color pr-2" href="#">
                                 <i class="i fas fa-tv fa-sm shadow-blk"></i>
                             </a>
-                            <a id="nextImage" style="text-decoration: none;" class="d-inline hover-color pr-2" href="#">
+                            <a title="Next Background"  id="nextImage" style="text-decoration: none;" class="d-inline hover-color pr-2" href="#">
                                 <i class="i fas fa-sync fa-sm shadow-blk"></i>
                             </a>
-                            <a target="_blank" rel="noopener noreferrer" id="imageDownload" style="text-decoration: none;" class="d-inline hover-color" href="#">
+                            <a title="Download Background"  target="_blank" rel="noopener noreferrer" id="imageDownload" style="text-decoration: none;" class="d-inline hover-color" href="#">
                                 <i class="i fas fa-download fa-sm shadow-blk"></i>
                             </a>
                         </div>
@@ -126,6 +126,7 @@
                             <i class="fas fa-circle shadow-txt" style="font-size: 8px; vertical-align: middle;"></i>
                         </div>
                         <span class="text-capitalize shadow-txt" id="data1s">Location</span>
+                    </div>
                     </div>
                 </div>
             </div>
