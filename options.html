@@ -2,9 +2,22 @@
 <html>
 <head><title>Seq Homepage Options</title></head>
 <body>
-    Channel List: <input id="channelList" type="text" value="random"><br>
-    Image Age Limit: <select id="numDays">
-        <option value="NA">All</option>
+    <b>You can get the channel list or test a a list via the https://seq.moe/gallery?channel=<"Random", Channel ID's spaced by + symbol></b><br>
+    Channel List ("+" spaced): <input id="channelList" type="text" value="random"> <input type="checkbox" id="syncChannelList" checked><br>
+    Minimum Vertical Resolution: <select id="resolutionMin">
+        <option value="NA">Any</option>
+        <option value="720">720px+</option>
+        <option value="1080">1080px+</option>
+        <option value="2100">2100px+</option>
+    </select> <input type="checkbox" id="syncResolutionMin" checked><br>
+    Aspect Ratio: <select id="aspectMode">
+        <option value="NA">Both</option>
+        <option value="0.01-1">Landscape Only</option>
+        <option value="1-2.1">Portrait Only</option>
+    </select> <input type="checkbox" id="syncAspectMode" checked><br>
+    Aspect Correction: <input type="checkbox" id="aspectCorrect" checked> <input type="checkbox" id="syncAspectCorrect" checked><br>
+    Age Limit: <select id="numDays">
+        <option value="NA">Any Date</option>
         <option value="7">7 Days</option>
         <option value="15">15 days</option>
         <option value="30">30 Days</option>
@@ -12,27 +25,18 @@
         <option value="120">120 Days</option>
         <option value="270">270 Days</option>
         <option value="360">360 Days</option>
-    </select><br>
-    Minimum Resolution: <select id="resolutionMin">
-        <option value="NA">All</option>
-        <option value="720">720px+</option>
-        <option value="1080">1080px+</option>
-        <option value="2100">2100px+</option>
-    </select><br>
-    Aspect Ratio: <select id="aspectMode">
-        <option value="NA">All</option>
-        <option value="0.01-1">Landscape-Only</option>
-        <option value="1-2.1">Portrait-Only</option>
-    </select><br>
-    Aspect Correction: <input type="checkbox" id="aspectCorrect" value="portraitMode" checked><br>
+    </select> <input type="checkbox" id="syncNumDays" checked><br><br>
 
-    Show NSFW Content (Requires Approval): <input type="checkbox" id="showNSFW" value="nsfwShow"><br>
-    Number of Images to Cache: <input id="numberRequest" type="text" value="10"><br>
+    Image Cycle Time (Min): <input id="cycleTimer" type="text" value="10"> <input type="checkbox" id="syncCycleTimer" checked><br>
+    Number of Images to Download: <input id="numberRequest" type="text" value="10"> <input type="checkbox" id="syncNumberRequest" checked><br>
+    Show NSFW Content (Requires Approval): <input type="checkbox" id="showNSFW"> <input type="checkbox" id="syncShowNSFW" checked><br><br>
 
-    Storage Usage: <span id="count">0</span> (<span id="usage">0</span> MB)
+    Storage Usage: <span id="count">0</span> (<span id="usage">0</span> MB)<br>
 
     <div id="status"></div>
-    <button id="save">Save</button>
+    <button id="save">Save & Refresh</button> <button id="reset">Restore</button><br>
+    <button id="upload">Push Cloud Settings</button><button id="download">Pull Cloud Settings</button><br>
+    <i>The check box on the right of a setting is to toggle sync to other browsers</i>
 
     <script src="options.js"></script>
 </body>

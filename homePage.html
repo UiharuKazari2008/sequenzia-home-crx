@@ -12,7 +12,8 @@
         <script type='text/javascript' src="/js/homeClient.js"></script>
     </head>
 <body>
-    <div class="background-image overlay" id="overlayBg"></div>
+    <div class="background-image overlay animated--fade-in" id="homeBg"></div>
+    <div class="background-image overlay ambient d-none animated--fade-in" id="ambientBg"></div>
     <div class="background-image" id="bg1" style="opacity: 1; z-index: -101!important; background-image: url('/img/default.png');"></div>
     <div class="background-image" id="bg2" style="opacity: 0; z-index: -103!important; background-image: url('#');"></div>
     <img class="portait-overlay center-block" id="bg1port" style="z-index: -100!important; opacity: 0;"/>
@@ -26,7 +27,7 @@
             </div>
         </div>
 
-        <div class="mid-center-block">
+        <div id="center-search" class="mid-center-block">
             <div class="animated--grow-in shadow-blk-wide">
                 <div class="dimmed d-flex">
                     <div class="flex-grow-1">
@@ -74,7 +75,7 @@
             </div>
             <div class="animated--grow-in">
                 <div class="dimmed d-flex pt-2">
-                    <div class="flex-grow-1" style="font-size: 1.3rem; font-weight: 100;" id="dataInfo">
+                    <div class="flex-grow-1" style="font-size: 1.3rem; font-weight: 100;">
                         <a id="imageLink" href="https://seq.moe/">
                             <div class="d-inline-block" style="padding: 0 0.25rem 0 0">
                                 <i class="fas fa-star shadow-text d-none" id="dataFav" style="font-size: 16px; vertical-align: middle; padding-bottom: 8px;"></i>
@@ -88,6 +89,9 @@
                     </div>
                     <div class="d-flex flex-column justify-content-end bottom-icon">
                         <div style="font-size: 1.3rem; font-weight: 100;">
+                            <a id="ambientModeToggle" style="text-decoration: none;" class="d-inline hover-color pr-2" href="#">
+                                <i class="i fas fa-tv fa-sm shadow-blk"></i>
+                            </a>
                             <a id="nextImage" style="text-decoration: none;" class="d-inline hover-color pr-2" href="#">
                                 <i class="i fas fa-sync fa-sm shadow-blk"></i>
                             </a>
@@ -95,6 +99,33 @@
                                 <i class="i fas fa-download fa-sm shadow-blk"></i>
                             </a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bottom-info" class="fixed-bottom m-5 d-none">
+            <div class="animated--fade-in d-flex">
+                <div class="flex-grow-1 align-self-end">
+                    <img class="shadow-blk" src="img/logo.png" style="height: 3em; opacity: 0.6" />
+                </div>
+                <div class="justify-content-end flex-column d-flex pr-4">
+                    <div class="clock-date clock ml-auto" id="dateInfo">
+                        <span class="shadow-txt" id="day">Monday</span>
+                        <span class="shadow-txt" id="date">Jan 10</span>
+                    </div>
+                    <div class="clock-time clock ml-auto" id="timeInfo">
+                        <span class="shadow-txt" id="time">00:00</span>
+                    </div>
+                    <div class="ml-auto pt-1" id="dataInfo" style="opacity: 0.4; font-size: 1.3rem; font-weight: 100;">
+                        <i class="shadow-txt fas fa-star shadow-txt d-none" id="dataFavs" style="font-size: 16px; vertical-align: middle; opacity: 0.25; padding-bottom: 5px;"></i>
+                        <i class="shadow-txt fas fa-search shadow-txt" id="dataIcons" style="font-size: 16px; vertical-align: middle; opacity: 0.25; padding-bottom: 5px;"></i>
+                        <span class="shadow-txt pr-2 pl-1" id="data2s" style="opacity: 0.25">000000</span>
+                        <span class="shadow-txt" id="data3s">January 10, 2020</span>
+                        <div class="d-inline-block p-2">
+                            <i class="fas fa-circle shadow-txt" style="font-size: 8px; vertical-align: middle;"></i>
+                        </div>
+                        <span class="text-capitalize shadow-txt" id="data1s">Location</span>
                     </div>
                 </div>
             </div>

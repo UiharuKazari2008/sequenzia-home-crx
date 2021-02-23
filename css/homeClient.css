@@ -125,6 +125,11 @@ a, a:hover, a:active {
     color: #ffac78;
 }
 
+.background-image.overlay.ambient {
+    background: linear-gradient(180deg, transparent 50%, #000000c7);
+    box-shadow: none;
+}
+
 @media (prefers-color-scheme: light) {
     .background-image.overlay {
         box-shadow: inset 0 0 250px black;

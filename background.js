@@ -7,7 +7,7 @@
 Developed at Academy City Research
 "Developing a better automated future"
 ======================================================================================
-Kanmi Project - Chrome Sharing Extension
+Sequenzia Project - Ambient Extension (Data Refresh Services)
 Copyright 2020
 ======================================================================================
 This code is under a strict NON-DISCLOSURE AGREEMENT, If you have the rights
@@ -46,25 +46,25 @@ function getImages() {
             for (const item of cookie) {
                 cookieString += `${item.name}=${item.value};`
             }
-            chrome.storage.sync.get(['settings'], function(items) {
+            chrome.storage.local.get(['settings'], function(sync) {
                 let options = []
-                if (items.settings !== undefined) {
-                    if (items.settings.numberRequest !== undefined) {
-                        options.push(`num=${items.settings.numberRequest}`)
+                if (sync.settings !== undefined) {
+                    if (sync.settings.numberRequest !== undefined) {
+                        options.push(`num=${sync.settings.numberRequest}`)
                     }
-                    if (items.settings.channelList !== undefined) {
-                        options.push(`channel=${items.settings.channelList}`)
+                    if (sync.settings.channelList !== undefined) {
+                        options.push(`channel=${sync.settings.channelList}`)
                     }
-                    if (items.settings.resolutionMin !== undefined && items.settings.resolutionMin !== 'NA') {
-                        options.push(`minhres=${items.settings.resolutionMin}`)
+                    if (sync.settings.resolutionMin !== undefined && sync.settings.resolutionMin !== 'NA') {
+                        options.push(`minhres=${sync.settings.resolutionMin}`)
                     }
-                    if (items.settings.aspectMode !== undefined && items.settings.aspectMode !== 'NA') {
-                        options.push(`ratio=${items.settings.aspectMode}`)
+                    if (sync.settings.aspectMode !== undefined && sync.settings.aspectMode !== 'NA') {
+                        options.push(`ratio=${sync.settings.aspectMode}`)
                     }
-                    if (items.settings.numDays !== undefined && items.settings.numDays !== 'NA') {
-                        options.push(`numdays=${items.settings.numDays}`)
+                    if (sync.settings.numDays !== undefined && sync.settings.numDays !== 'NA') {
+                        options.push(`numdays=${sync.settings.numDays}`)
                     }
-                    if (items.settings.showNSFW !== undefined && items.settings.showNSFW === true) {
+                    if (sync.settings.showNSFW !== undefined && sync.settings.showNSFW === true) {
                         options.push(`nsfw=true`)
                     } else {
                         options.push(`nsfw=false`)
