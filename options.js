@@ -13,7 +13,7 @@ function save_options() {
         cycleTimer = 5;
     const aspectCorrect = document.getElementById('aspectCorrect').checked;
     const showNSFW = document.getElementById('showNSFW').checked;
-    const ambientModeOnly = document.getElementById('showNSFW').checked;
+    const ambientModeOnly = document.getElementById('ambientModeOnly').checked;
 
     const syncChannelList = document.getElementById('syncChannelList').checked;
     const syncResolutionMin = document.getElementById('syncResolutionMin').checked;
