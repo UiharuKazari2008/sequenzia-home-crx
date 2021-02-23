@@ -25,8 +25,11 @@ let init = true;
 let aspectCorrect = true;
 let ambientModeState = true;
 let ambientToggle = true;
+let ambientOnly = false
 const inactiveTimeout = 60000;
+let cycleTime = 5;
 let timeoutId;
+let timeoutCycle;
 
 // Time
 function dc(){
@@ -151,44 +154,54 @@ async function changeImage(data) {
 }
 
 function setupPage() {
-    chrome.storage.sync.get(['settings'], function(items) {
-        if (items.settings !== undefined && items.settings.aspectCorrect !== undefined) {
-            aspectCorrect = items.settings.aspectCorrect
-        }
-        chrome.storage.local.get(null, (data) => {
-            if (data !== undefined) {
-                const keys = Object.keys(data);
-                if (keys.indexOf('userInfo') !== -1) {
-                    document.getElementById('userName').innerText = data['userInfo'].user_username;
-                    document.getElementById('userImage').src = `https://cdn.discordapp.com/avatars/${data['userInfo'].user_id}/${data['userInfo'].user_image}.jpg`;
-                }
-                const files = keys.filter((e) => { return e.includes('file-') });
-                if (keys.indexOf('activity-last') !== -1) {
-                    const count = files.length;
-                    let last = data['activity-last'];
-                    if (last < count - 1) {
-                        last++;
-                    } else {
-                        last = 0;
-
-                        console.log('Getting more images...');
-                        chrome.extension.getBackgroundPage().getImages();
-                    }
-                    chrome.storage.local.set({'activity-last': last});
-
-                    console.log(`Displaying Image #${last}`)
-                    changeImage(data[files[last]]);
-                } else {
-                    chrome.storage.local.set({'activity-last': 0});
-
-                    changeImage(data[files[0]]);
-                }
-            } else {
-                console.log('Cannot get a new image, Refreshing...')
-                chrome.extension.getBackgroundPage().getImages();
+    resetPageTimer()
+    if (!document.hidden || ambientOnly) {
+        chrome.storage.sync.get(['settings'], function(items) {
+            if (items.settings !== undefined && items.settings.aspectCorrect !== undefined) {
+                aspectCorrect = items.settings.aspectCorrect
             }
+            chrome.storage.local.get(null, (data) => {
+                if (data !== undefined) {
+                    const keys = Object.keys(data);
+                    if (keys.indexOf('userInfo') !== -1) {
+                        document.getElementById('userName').innerText = data['userInfo'].user_username;
+                        document.getElementById('userImage').src = `https://cdn.discordapp.com/avatars/${data['userInfo'].user_id}/${data['userInfo'].user_image}.jpg`;
+                    }
+                    const files = keys.filter((e) => { return e.includes('file-') });
+                    if (keys.indexOf('activity-last') !== -1) {
+                        const count = files.length;
+                        let last = data['activity-last'];
+                        if (last < count - 1) {
+                            last++;
+                        } else {
+                            last = 0;
+                            console.log('Getting more images...');
+                            chrome.extension.getBackgroundPage().getImages();
+                        }
+                        chrome.storage.local.set({'activity-last': last});
+                        console.log(`Displaying Image #${last}`)
+                        changeImage(data[files[last]]);
+                    } else {
+                        chrome.storage.local.set({'activity-last': 0});
+                        changeImage(data[files[0]]);
+                    }
+                } else {
+                    console.log('Cannot get a new image, Refreshing...')
+                    chrome.extension.getBackgroundPage().getImages();
+                }
+            })
         })
-    })
+    } else {
+        console.log('Page is not visible')
+    }
+}
+
+function startPageTimer() {
+    timeoutCycle = window.setTimeout(setupPage, cycleTime * 60000);
+}
+function resetPageTimer() {
+    window.clearTimeout(timeoutCycle);
+    startPageTimer();
 }
 
 function ambientMode() {
@@ -245,7 +258,6 @@ $(document).ready(function () {
     chrome.storage.local.get(null, (data) => {
         if (data !== undefined && Object.keys(data).filter((e) => {return e.includes('file-')}).length > 0) {
             chrome.storage.local.get(['settings'], (settings) => {
-                let cycleTime = 5;
                 if (settings && settings.settings) {
                     if (settings.settings.cycleTimer && !isNaN(parseInt(settings.settings.cycleTimer))) {
                         cycleTime = settings.settings.cycleTimer;
@@ -253,11 +265,17 @@ $(document).ready(function () {
                     if (settings.settings.cycleTimer && !isNaN(parseInt(settings.settings.cycleTimer))) {
                         cycleTime = settings.settings.cycleTimer;
                     }
-
+                    if (settings.settings.ambientModeOnly) {
+                        ambientOnly = settings.settings.ambientModeOnly;
+                    }
                 }
-                // Only Setup when
-                setupPage(); ambientTimeout();
-                setInterval(setupPage, cycleTime * 60000);
+
+                if (ambientOnly) {
+                    ambientModeForce();
+                } else {
+                    ambientTimeout();
+                }
+                setupPage();
             })
         } else {
             document.getElementById('data1').innerText = "Login Required, Click Here"

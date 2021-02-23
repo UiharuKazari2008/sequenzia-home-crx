@@ -13,6 +13,7 @@ function save_options() {
         cycleTimer = 5;
     const aspectCorrect = document.getElementById('aspectCorrect').checked;
     const showNSFW = document.getElementById('showNSFW').checked;
+    const ambientModeOnly = document.getElementById('showNSFW').checked;
 
     const syncChannelList = document.getElementById('syncChannelList').checked;
     const syncResolutionMin = document.getElementById('syncResolutionMin').checked;
@@ -45,7 +46,8 @@ function save_options() {
             showNSFW: showNSFW,
             numberRequest: numberRequest,
             cycleTimer: cycleTimer,
-            numDays: numDays
+            numDays: numDays,
+            ambientModeOnly: ambientModeOnly
         }
     }, function() {
     chrome.storage.sync.set({
@@ -142,6 +144,8 @@ function restore_options() {
             if (local.settings !== undefined)
                 document.getElementById('showNSFW').checked = local.settings.showNSFW;
         }
+        if (local.settings !== undefined)
+            document.getElementById('ambientModeOnly').checked = local.settings.ambientModeOnly;
     });
     });
     });
