@@ -56,7 +56,7 @@ function getImages() {
                         options.push(`channel=${sync.settings.channelList}`)
                     }
                     if (sync.settings.resolutionMin !== undefined && sync.settings.resolutionMin !== 'NA') {
-                        options.push(`minhres=${sync.settings.resolutionMin}`)
+                        options.push(`minres=${sync.settings.resolutionMin}`)
                     }
                     if (sync.settings.aspectMode !== undefined && sync.settings.aspectMode !== 'NA') {
                         options.push(`ratio=${sync.settings.aspectMode}`)
