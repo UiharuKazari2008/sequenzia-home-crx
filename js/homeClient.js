@@ -156,7 +156,7 @@ async function changeImage(data) {
 function setupPage() {
     resetPageTimer()
     if (!document.hidden || ambientOnly) {
-        chrome.storage.sync.get(['settings'], function(items) {
+        chrome.storage.local.get(['settings'], function(items) {
             if (items.settings !== undefined && items.settings.aspectCorrect !== undefined) {
                 aspectCorrect = items.settings.aspectCorrect
             }
