@@ -175,3 +175,14 @@ chrome.runtime.onStartup.addListener(function() {
 chrome.runtime.onInstalled.addListener(function() {
     loadExtension()
 });
+// Message Parser
+chrome.runtime.onMessage.addListener(function (request) {
+    console.log(`Got Remote Message: ${request.cmd}`)
+    switch (request.cmd) {
+        case "refresh":
+            getImages();
+            break;
+        default:
+            console.error('Command Not Registered');
+    }
+});

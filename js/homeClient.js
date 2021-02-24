@@ -25,11 +25,12 @@ let init = true;
 let aspectCorrect = true;
 let ambientModeState = true;
 let ambientToggle = true;
-let ambientOnly = false
+let ambientOnly = false;
 const inactiveTimeout = 60000;
 let cycleTime = 5;
 let timeoutId;
 let timeoutCycle;
+const localConfiguration = new URLSearchParams(document.location.href);
 
 // Time
 function dc(){
@@ -176,7 +177,7 @@ function setupPage() {
                         } else {
                             last = 0;
                             console.log('Getting more images...');
-                            chrome.extension.getBackgroundPage().getImages();
+                            chrome.runtime.sendMessage({cmd: "refresh"});
                         }
                         chrome.storage.local.set({'activity-last': last});
                         console.log(`Displaying Image #${data['activity-last']}`)
@@ -252,40 +253,50 @@ function ambientModeForce() {
 }
 
 $(document).ready(function () {
-    chrome.storage.local.get(null, (data) => {
-        if (data !== undefined && Object.keys(data).filter((e) => {return e.includes('file-')}).length > 0) {
-            chrome.storage.local.get(['settings'], (settings) => {
-                if (settings && settings.settings) {
-                    if (settings.settings.cycleTimer && !isNaN(parseInt(settings.settings.cycleTimer))) {
-                        cycleTime = settings.settings.cycleTimer;
-                    }
-                    if (settings.settings.cycleTimer && !isNaN(parseInt(settings.settings.cycleTimer))) {
-                        cycleTime = settings.settings.cycleTimer;
-                    }
-                    if (settings.settings.ambientModeOnly) {
-                        ambientOnly = settings.settings.ambientModeOnly;
-                    }
-                }
-
-                if (ambientOnly) {
-                    ambientModeForce();
-                } else {
-                    ambientTimeout();
-                }
-                setupPage();
-            })
-        } else {
-            document.getElementById('data1').innerText = "Login Required, Click Here"
-        }
-    })
-
     dct(); ddt(); ddwt();
+    if (window.location.href.includes('ambient')) {
+        chrome.storage.local.get(null, (data) => {
+            if (data !== undefined && Object.keys(data).filter((e) => {return e.includes('file-')}).length > 0) {
+                ambientModeForce();
+                setupPage();
+            } else {
+                document.location.href = 'https://seq.moe/device-login'
+            }
+        })
+    } else {
+        chrome.storage.local.get(null, (data) => {
+            if (data !== undefined && Object.keys(data).filter((e) => {return e.includes('file-')}).length > 0) {
+                chrome.storage.local.get(['settings'], (settings) => {
+                    if (settings && settings.settings) {
+                        if (settings.settings.cycleTimer && !isNaN(parseInt(settings.settings.cycleTimer))) {
+                            cycleTime = settings.settings.cycleTimer;
+                        }
+                        if (settings.settings.cycleTimer && !isNaN(parseInt(settings.settings.cycleTimer))) {
+                            cycleTime = settings.settings.cycleTimer;
+                        }
+                        if (settings.settings.ambientModeOnly) {
+                            ambientOnly = settings.settings.ambientModeOnly;
+                        }
+                    }
 
-    document.getElementById("btnSearch").addEventListener("click", () => { $("#srchfrm").submit(); });
-    document.getElementById("nextImage").addEventListener("click", setupPage);
-    document.getElementById("ambientModeToggle").addEventListener("click", ambientModeForce);
-    document.getElementById("btnSearchGallery").addEventListener("click", () => {
-        window.location.href = `https://seq.moe/gallery?channel=random&pageinator=true&search=${document.getElementById('q').value}`; });
-    document.getElementById("btnSearchFiles").addEventListener("click", () => {
-        window.location.href = `https://seq.moe/files?channel=random&pageinator=true&search=${document.getElementById('q').value}`; });
+                    if (ambientOnly) {
+                        ambientModeForce();
+                    } else {
+                        ambientTimeout();
+                    }
+                    setupPage();
+                })
+            } else {
+                document.getElementById('data1').innerText = "Login Required, Click Here"
+            }
+        })
+
+        document.getElementById("btnSearch").addEventListener("click", () => { $("#srchfrm").submit(); });
+        document.getElementById("nextImage").addEventListener("click", setupPage);
+        document.getElementById("ambientModeToggle").addEventListener("click", ambientModeForce);
+        document.getElementById("btnSearchGallery").addEventListener("click", () => {
+            window.location.href = `https://seq.moe/gallery?channel=random&pageinator=true&search=${document.getElementById('q').value}`; });
+        document.getElementById("btnSearchFiles").addEventListener("click", () => {
+            window.location.href = `https://seq.moe/files?channel=random&pageinator=true&search=${document.getElementById('q').value}`; });
+    }
 })

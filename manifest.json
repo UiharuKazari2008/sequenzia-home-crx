@@ -8,7 +8,7 @@
     "open_in_tab": false
   },
   "background": {
-    "persistent": false,
+    "persistent": true,
     "scripts": ["background.js"]
   },
   "manifest_version": 2,

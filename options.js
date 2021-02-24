@@ -73,7 +73,7 @@ function save_options() {
         setTimeout(function () {
             status.textContent = '';
         }, 2000);
-        chrome.extension.getBackgroundPage().getImages();
+        chrome.runtime.sendMessage({cmd: "refresh"});
     })
     })
     })

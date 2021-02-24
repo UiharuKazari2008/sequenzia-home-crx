@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>New Tab</title>
+        <link rel='stylesheet' href='/css/sb-admin-2.css'><link/>
+        <link rel='stylesheet' href="/css/custom.css"><link/>
+        <link rel='stylesheet' href="/css/homeClient.css"><link/>
+        <link rel='stylesheet' href='/vendor/fontawesome-free/css/all.min.css'><link/>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Yantramanav:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i'><link/>
+        <script type='text/javascript' src="/vendor/jquery-3.5.1.min.js"></script>
+        <script type='text/javascript' src="/js/homeClient.js"></script>
+    </head>
+<body>
+    <div class="background-image overlay ambient animated--fade-in" id="ambientBg"></div>
+    <div class="background-image" id="bg1" style="opacity: 1; z-index: -101!important; background-image: url('/img/default.png');"></div>
+    <div class="background-image" id="bg2" style="opacity: 0; z-index: -103!important; background-image: url('#');"></div>
+    <img class="portait-overlay center-block" id="bg1port" style="z-index: -100!important; opacity: 0;"/>
+    <img class="portait-overlay center-block" id="bg2port" style="z-index: -102!important; opacity: 0;"/>
+        
+    <div class="container p-4" id="content-wrapper">
+        <div class="fixed-top m-5">
+            <div class="d-flex justify-content-end" id="userInfo" style="opacity: 0.5;">
+                <span id="userName" class="align-self-center" style="font-size: 1.6em; color: white; font-weight: 300; padding: 0 0.5em 0 0; -webkit-text-stroke: 1px #00000069; text-shadow: 0px 0px 10px #000000a6;"></span>
+                <img id="userImage" class="img-profile rounded-circle" style="width: 2.5em; box-shadow: 0 0 8px black; -webkit-text-stroke: 1px #00000069; text-shadow: 0px 0px 10px #000000a6;" />
+            </div>
+        </div>
+
+        <div id="bottom-info" class="fixed-bottom m-5">
+            <div class="animated--fade-in d-flex">
+                <div class="flex-grow-1 align-self-end">
+                    <img class="shadow-blk" src="img/logo.png" style="height: 3em; opacity: 0.6" />
+                </div>
+                <div class="justify-content-end flex-column d-flex pr-4">
+                    <div class="clock-date clock ml-auto" id="dateInfo">
+                        <span class="shadow-txt" id="day">Monday</span>
+                        <span class="shadow-txt" id="date">Jan 10</span>
+                    </div>
+                    <div class="clock-time clock ml-auto" id="timeInfo">
+                        <span class="shadow-txt" id="time">00:00</span>
+                    </div>
+                    <div class="ml-auto pt-1" id="dataInfo" style="opacity: 0.4; font-size: 1.3rem; font-weight: 100;">
+                        <i class="shadow-txt fas fa-star shadow-txt d-none" id="dataFavs" style="font-size: 16px; vertical-align: middle; opacity: 0.25; padding-bottom: 5px;"></i>
+                        <i class="shadow-txt fas fa-search shadow-txt" id="dataIcons" style="font-size: 16px; vertical-align: middle; opacity: 0.25; padding-bottom: 5px;"></i>
+                        <span class="shadow-txt pr-2 pl-1" id="data2s" style="opacity: 0.25">000000</span>
+                        <span class="shadow-txt" id="data3s">January 10, 2020</span>
+                        <div class="d-inline-block p-2">
+                            <i class="fas fa-circle shadow-txt" style="font-size: 8px; vertical-align: middle;"></i>
+                        </div>
+                        <span class="text-capitalize shadow-txt" id="data1s">Location</span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
