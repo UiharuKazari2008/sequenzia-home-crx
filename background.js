@@ -66,8 +66,6 @@ function checkLogin() {
     refreshAccount(ok => {
         if (ok) {
             getImages();
-            clearInterval(loginValidator);
-            loginValidator = undefined
         }
     })
 }
@@ -178,9 +176,11 @@ function refreshAccount(cb) {
                                     user_image: responseJSON.user.avatar,
                                     user_username: responseJSON.user.username
                                 }}, () => {
-                                parseResponse(responseJSON, cookieString);
+                                cb(true)
+                                clearInterval(loginValidator);
+                                loginValidator = undefined
                             });
-                            cb(true);
+
                         } else {
                             console.error('Did not get a valid response, no user data were returned');
                             cb(false);
