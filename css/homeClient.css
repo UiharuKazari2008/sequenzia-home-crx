@@ -130,6 +130,11 @@ a, a:hover, a:active {
     box-shadow: none;
 }
 
+div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+}
+
 @media (prefers-color-scheme: light) {
     .background-image.overlay {
         box-shadow: inset 0 0 250px black;

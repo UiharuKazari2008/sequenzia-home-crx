@@ -166,7 +166,7 @@ function setupPage() {
                     const keys = Object.keys(data);
                     if (keys.indexOf('userInfo') !== -1) {
                         document.getElementById('userName').innerText = data['userInfo'].user_username;
-                        document.getElementById('userImage').src = `https://cdn.discordapp.com/avatars/${data['userInfo'].user_id}/${data['userInfo'].user_image}.jpg`;
+                        document.getElementById('userImage').src = data['userInfo'].user_image;
                     }
                     const files = keys.filter((e) => { return e.includes('file-') });
                     if (keys.indexOf('activity-last') !== -1) {
@@ -174,6 +174,7 @@ function setupPage() {
                         let last = data['activity-last'];
                         if (last < count - 1) {
                             last++;
+                            chrome.runtime.sendMessage({cmd: "history", id: data[files[last]].id});
                         } else {
                             last = 0;
                             console.log('Getting more images...');
@@ -295,8 +296,8 @@ $(document).ready(function () {
         document.getElementById("nextImage").addEventListener("click", setupPage);
         document.getElementById("ambientModeToggle").addEventListener("click", ambientModeForce);
         document.getElementById("btnSearchGallery").addEventListener("click", () => {
-            window.location.href = `https://seq.moe/gallery?channel=random&pageinator=true&search=${document.getElementById('q').value}`; });
+            window.location.href = `https://seq.moe/gallery?search=${document.getElementById('q').value}`; });
         document.getElementById("btnSearchFiles").addEventListener("click", () => {
-            window.location.href = `https://seq.moe/files?channel=random&pageinator=true&search=${document.getElementById('q').value}`; });
+            window.location.href = `https://seq.moe/files?search=${document.getElementById('q').value}`; });
     }
 })
