@@ -1,7 +1,7 @@
 {
   "name": "Sequenzia Home",
   "description": "Homepage for the Sequenzia Image Board",
-  "version": "0.0.16",
+  "version": "0.1.1",
   "permissions": ["storage", "unlimitedStorage", "cookies", "*://seq.moe/*", "*://*.seq.moe/*"],
   "options_ui": {
     "page": "options.html",
